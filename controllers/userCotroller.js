@@ -7,8 +7,9 @@ exports.UseHome = async (req, res) => {
 }
 exports.UseLogin = async (req, res) => {
     const connetion = await getConnection();
-    const result = await connetion.query("SELECT * FROM `usuarios` WHERE `name` = 'admin' and `password` = 123");
-    res.send(result);
+    // const admin = await connetion.query("SELECT * FROM `usuarios` WHERE `name` = 'admin' and `password` = 123");
+    const user = await connetion.query("SELECT * FROM `usuarios` WHERE `role` = 2;");
+    res.send(user);
 }
 
 
