@@ -1,13 +1,19 @@
-require('dotenv').config();
-const express = require('express');
+const express = require("express");
+const bodyParser = require('body-parser');
+const routes = require("./routes/index");
+
 const app = express();
 
-app.get("/", (req, res) => {
-    res.send("Hola Mundo");
-});
+app.get("/", routes());
+app.get("/login", routes());
 
 
-const port = process.env.PORT || 3000;
-app.listen(port, () => {
-    console.log("Conexion!!", port);
+app.use(bodyParser.json()); 
+app.use(bodyParser.urlencoded({extended: true}));
+
+
+
+app.listen(3001, () => {
+    console.log("Corriendo por el puerto:", 3001);
 });
+
